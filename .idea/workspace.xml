@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="49ccaba1-0969-493c-81d3-07da33f2c025" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/components/armour-select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/footer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/item-select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/offhand-select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/page-wrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/weapon-select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/armour-reductions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/armour.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/battle.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/character.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/shields.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/stats.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/weapons.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/hello.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IlXQfZD1XnPZ3V3QBiqY8PDLhU" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="compactDirectories" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/seancooper/code/rpg-battler/components",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/seancooper/code/rpg-battler/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/seancooper/code/rpg-battler/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/rpg" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49ccaba1-0969-493c-81d3-07da33f2c025" name="Changes" comment="" />
+      <created>1670757128599</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670757128599</updated>
+      <workItem from="1670757129838" duration="702000" />
+      <workItem from="1670758360121" duration="9000" />
+      <workItem from="1670759077123" duration="132000" />
+      <workItem from="1670759218749" duration="11278000" />
+      <workItem from="1670778441581" duration="4212000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
