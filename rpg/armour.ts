@@ -39,8 +39,8 @@ const armours: Record<string, Armour> = {
     },
     plate: {
         name: "plate",
-        value: 12,
-        weight: 35,
+        value: 15,
+        weight: 28,
         material: ArmourType.plate,
         price: 50
     },

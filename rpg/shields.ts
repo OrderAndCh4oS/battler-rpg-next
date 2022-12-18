@@ -3,23 +3,23 @@ import {Shield} from "./interface";
 const shields: Record<string, Shield> = {
     buckler: {
         name: "buckler",
-        blockChance: 15,
+        blockChance: 22,
         durability: 500,
-        weight: 6,
+        weight: 7,
         price: 20
     },
     roundShield: {
         name: "roundShield",
-        blockChance: 20,
+        blockChance: 28,
         durability: 1000,
-        weight: 20,
+        weight: 11,
         price: 50
     },
     longShield: {
         name: "longShield",
-        blockChance: 25,
+        blockChance: 36,
         durability: 1500,
-        weight: 30,
+        weight: 16,
         price: 80
     }
 };

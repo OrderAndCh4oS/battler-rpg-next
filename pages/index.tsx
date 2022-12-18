@@ -4,13 +4,16 @@ import {Character, Combatant, CombatantStats, Item} from "../rpg/interface";
 import Battler, {Logger, LoggerRenderer, NullLogger} from "../rpg/battle";
 import {getAttackRateStats, getBlockStats, getDodgeStats} from "../rpg/stats";
 import WeaponSelect from "../components/weapon-select";
-import ShieldSelect from "../components/offhand-select";
+import ShieldSelect, {isShield} from "../components/offhand-select";
 import ArmourSelect from "../components/armour-select";
 import Image from "next/image";
 import characterImageList from "../utilities/character-images";
 import generateEnemy from "../rpg/generate-enemy";
+import deepClone from "../utilities/deep-clone";
+import shields from "../rpg/shields";
 
 const Main: FC = () => {
+    const [isGeneratingEnemy, setIsGeneratingEnemy] = useState(false);
     const [player, setPlayer] = useState({...makeCharacter("Player One", characterImageList[0])});
     const [enemy, setEnemy] = useState<Character | null>(null);
     const [logs, setLogs] = useState<string[]>([]);
@@ -72,37 +75,40 @@ const Main: FC = () => {
     };
 
     const handleGenerateEnemy = () => {
+        setIsGeneratingEnemy(true);
         const enemy = generateEnemy(player.actor);
-        // const logger = new NullLogger();
-        // const battler = new Battler(logger);
-        // const mockPlayer = {...player};
-        // const mockEnemy = {...enemy};
-        // let result: any;
-        // for(let i = 0; i < 10; i++) {
-        //     result = battler.start(mockPlayer, mockEnemy);
-        // }
-        // console.log(result!.combatantOne.character.wins);
-        // console.log(result!.combatantTwo.character.wins);
+        const logger = new NullLogger();
+        const battler = new Battler(logger);
+        let result: any;
+        const wl = {w: 0, l: 0}
+        for(let i = 0; i < 100; i++) {
+            const mockPlayer = deepClone(player);
+            const mockEnemy = deepClone(enemy);
+            result = battler.start(mockPlayer, mockEnemy);
+            if(mockPlayer.wins) wl.w++; else wl.l++;
+        }
+        console.log(wl);
         setEnemy(enemy);
+        setIsGeneratingEnemy(false);
     };
 
-    // useEffect(() => {
-    //     if (!combatantStats) return;
-    //     const {combatantOne, combatantTwo} = combatantStats;
-    //     const combatantOneStats: CombatantStats = {
-    //         attackRateStats: getAttackRateStats(combatantOne),
-    //         dodgeStats: getDodgeStats(combatantOne),
-    //         blockStats: getBlockStats(combatantOne)
-    //     };
-    //
-    //     const combatantTwoStats: CombatantStats = {
-    //         attackRateStats: getAttackRateStats(combatantTwo),
-    //         dodgeStats: getDodgeStats(combatantTwo),
-    //         blockStats: getBlockStats(combatantTwo)
-    //     };
-    //
-    //     setStats({combatantOneStats, combatantTwoStats});
-    // }, [combatantStats]);
+    useEffect(() => {
+        if (!combatantStats) return;
+        const {combatantOne, combatantTwo} = combatantStats;
+        const combatantOneStats: CombatantStats = {
+            attackRateStats: getAttackRateStats(combatantOne),
+            dodgeStats: getDodgeStats(combatantOne),
+            blockStats: getBlockStats(combatantOne)
+        };
+
+        const combatantTwoStats: CombatantStats = {
+            attackRateStats: getAttackRateStats(combatantTwo),
+            dodgeStats: getDodgeStats(combatantTwo),
+            blockStats: getBlockStats(combatantTwo)
+        };
+
+        setStats({combatantOneStats, combatantTwoStats});
+    }, [combatantStats]);
 
     return (
         <div>
@@ -170,6 +176,7 @@ const Main: FC = () => {
                     onClick={handleGenerateEnemy}
                 >Generate Enemy
                 </button>
+                {isGeneratingEnemy && <p>Generating…</p>}
                 {enemy && (
                     <div className='pb-4'>
                         <h2 className='pb-4 text-2xl'>Enemy</h2>

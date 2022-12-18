@@ -123,17 +123,17 @@ class Battler {
     }
 
     private getDodgeChance(defender: Character, attacker: Character) {
-        const dexDodgeChance = (defender.actor.dex - attacker.actor.dex) / 10;
-        const intDodgeChance = (defender.actor.int - attacker.actor.int) / 10;
-        return Math.round(66 - dexDodgeChance + intDodgeChance);
+        const dexDodgeChance = ((defender.actor.dex - attacker.actor.dex) / 10) * 2;
+        const intDodgeChance = ((defender.actor.int - attacker.actor.int) / 10) * 2;
+        return Math.round(66 - Math.round(dexDodgeChance + intDodgeChance));
     }
 
     private getCriticalHitChance(attacker: Character, defender: Character) {
-        return 90 - ((attacker.actor.int - defender.actor.int) / 10);
+        return Math.min(90 - Math.round((attacker.actor.int - defender.actor.int) / 10) * 6, 99);
     }
 
     private getDamageVariability(baseDamage: number, attacker: Character) {
-        return Math.random() * baseDamage / ("damage" in attacker.actor.offHand ? 4 : 5);
+        return Math.random() * baseDamage / ("damage" in attacker.actor.offHand ? 3 : 5);
     }
 
     private getDamage(attacker: Combatant, defender: Combatant, weapon: Weapon) {

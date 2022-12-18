@@ -7,7 +7,7 @@ interface IShieldSelectProps {
     setCharacterShield: (shield: Shield) => void
 }
 
-const isShield = (item: Item | Shield): item is Shield => {
+export const isShield = (item: Item | Shield): item is Shield => {
     return 'blockChance' in item;
 }
 

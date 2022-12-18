@@ -17,8 +17,6 @@ const filterByRemainingGold = (gold: number) => (item: Item) => {
 const generateEnemy = (actor: Actor): Character => {
     const statSum = actor.str + actor.dex + actor.int;
     let gold = actor.mainHand.price + actor.offHand.price + actor.armour.price;
-    console.log('statSum', statSum);
-    console.log('gold', gold);
     const enemy = makeCharacter('enemy', pickRandomCharacterImage());
     const sortedWeapons = [...(Object.values(weapons).sort((a, b) => a.price - b.price))];
     const sortedShields = [...(Object.values(shields).sort((a, b) => a.price - b.price))];
@@ -33,9 +31,11 @@ const generateEnemy = (actor: Actor): Character => {
     gold -= enemy.actor.offHand.price;
     enemy.actor.armour = shuffle(sortedArmours.filter(filterByRemainingGold(gold))).pop() ?? armours.cloth;
     enemy.actor
-    let statCap = statSum + getPercentValue(statSum, 0.1);
-    console.log('statCap', statCap)
-    console.log('statSum', statSum)
+    const modifier = getPercentValue(statSum, 0.2);
+    const statCapModifierRoll = Math.round(Math.random() * modifier - modifier * 0.75);
+    console.log('scmr', statCapModifierRoll);
+    let statCap = statSum + statCapModifierRoll
+    console.log('sc', statCap);
     while(statCap > 0) {
         const roll = Math.random() * 6 + 1;
         const stat = ['str', 'dex', 'int'][~~(Math.random() * 3)] as 'str' | 'dex' | 'int'
