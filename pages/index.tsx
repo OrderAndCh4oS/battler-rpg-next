@@ -163,9 +163,9 @@ const Main: FC = () => {
                 <div className='pb-4'>
                     <h2 className='pb-4 text-2xl'>Player One</h2>
                     <div>
-                        <Image src={`/images/${state.playerOne.image}`} alt='Player one avatar' width={256}
+                        <Image className='pb-2' src={`/images/${state.playerOne.image}`} alt='Player one avatar' width={256}
                                height={256}/>
-                        <button onClick={pickRandomImage('playerOne')}>⟳</button>
+                        <button className='text-3xl mb-4 py-0 px-0.5' onClick={pickRandomImage('playerOne')}>⟳</button>
                     </div>
                     <div className='flex gap-4'>
                         <div className='flex flex-col gap-1 mb-2'>
@@ -216,9 +216,9 @@ const Main: FC = () => {
                 <div className='pb-4'>
                     <h2 className='pb-4 text-2xl'>Player Two</h2>
                     <div>
-                        <Image src={`/images/${state.playerTwo.image}`} alt='Player two avatar' width={256}
+                        <Image className='pb-2' src={`/images/${state.playerTwo.image}`} alt='Player two avatar' width={256}
                                height={256}/>
-                        <button onClick={pickRandomImage('playerTwo')}>⟳</button>
+                        <button className='text-3xl mb-4 py-0 px-0.5' onClick={pickRandomImage('playerTwo')}>⟳</button>
                     </div>
                     <div className='flex gap-4'>
                         <div className='flex flex-col gap-1 mb-2'>

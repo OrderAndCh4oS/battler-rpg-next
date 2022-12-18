@@ -3,15 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.gradient {
-    display: inline-block;
-    height: 250px;
-    width: 80%;
-    border-radius: 20px;
-    box-shadow: 0 5px 10px #0002;
-}
-
 @layer base {
     html {
         font-family: 'Crimson Text', serif;

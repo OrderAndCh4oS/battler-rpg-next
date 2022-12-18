@@ -5,56 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ccaba1-0969-493c-81d3-07da33f2c025" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/035d41.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/053774.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/0f73ba.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/120449.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/123196.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/163bf9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/1ecb32.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/2633c7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/30a66e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/3711d1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/3744e2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/383135.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/397fee.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/3ec130.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/4443bd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/45e30c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/4c3a5a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/4f85c2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/543196.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/617422.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/66090e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6f9a78.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/774049.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/9938d6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/99ad7d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/9ed390.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/aa270c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/ac337e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/af68b4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/b08789.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/b499b1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/b4bdd6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/b5c91d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/b8561b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/cf1589.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/d5e49f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/e49e42.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/e7ed2b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/e8e731.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/ea804e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/ece066.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/f07db3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/f5f98b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/faf630.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/fcc115.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/fce557.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/battle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/battle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/weapons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/weapons.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,23 +37,23 @@
     <option name="showMembers" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/seancooper/code/rpg-battler/public/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/seancooper/code/rpg-battler/node_modules/prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/seancooper/code/rpg-battler/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/seancooper/code/rpg-battler/public/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/seancooper/code/rpg-battler/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/seancooper/code/rpg-battler/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/images" />
@@ -123,7 +78,8 @@
       <workItem from="1670759077123" duration="132000" />
       <workItem from="1670759218749" duration="11278000" />
       <workItem from="1670778441581" duration="4212000" />
-      <workItem from="1671322818102" duration="4057000" />
+      <workItem from="1671322818102" duration="6296000" />
+      <workItem from="1671365029277" duration="663000" />
     </task>
     <servers />
   </component>

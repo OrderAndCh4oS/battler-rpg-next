@@ -44,79 +44,79 @@ export const dagger: Weapon = {
 export const cudgel: Weapon = {
     name: "cudgel",
     edge: EdgeType.blunt,
-    damage: 28,
-    weight: 16,
+    damage: 12,
+    weight: 10,
     price: 20
 };
 
 export const hatchet: Weapon = {
     name: "hatchet",
     edge: EdgeType.slash,
-    damage: 25,
-    weight: 12,
-    price: 22
+    damage: 14,
+    weight: 9,
+    price: 25
 };
 
 export const shortSword: Weapon = {
     name: "shortSword",
     edge: EdgeType.slash,
-    damage: 35,
-    weight: 14,
-    price: 40
+    damage: 16,
+    weight: 12,
+    price: 30
 };
 
 export const shortSpear: Weapon = {
     name: "shortSpear",
     edge: EdgeType.pierce,
-    damage: 35,
-    weight: 25,
+    damage: 15,
+    weight: 11,
     price: 40
 };
 
 export const sabre: Weapon = {
     name: "sabre",
     edge: EdgeType.slash,
-    damage: 40,
-    weight: 22,
-    price: 65
+    damage: 14,
+    weight: 10,
+    price: 33
 };
 
 export const axe: Weapon = {
     name: "axe",
     edge: EdgeType.slash,
-    damage: 50,
-    weight: 28,
+    damage: 17,
+    weight: 13,
     price: 50
 };
 
 export const broadSword: Weapon = {
     name: "broadSword",
     edge: EdgeType.slash,
-    damage: 58,
-    weight: 36,
+    damage: 18,
+    weight: 14,
     price: 60
 };
 
 export const mace: Weapon = {
     name: "mace",
     edge: EdgeType.blunt,
-    damage: 60,
-    weight: 27,
+    damage: 19,
+    weight: 16,
     price: 68
 };
 
 export const flail: Weapon = {
     name: "flail",
     edge: EdgeType.blunt,
-    damage: 40,
-    weight: 18,
+    damage: 20,
+    weight: 15,
     price: 60
 };
 
 export const longSword: Weapon = {
     name: "longSword",
     edge: EdgeType.blunt,
-    damage: 62,
-    weight: 22,
+    damage: 19,
+    weight: 14,
     price: 70
 };
