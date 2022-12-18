@@ -19,11 +19,16 @@
         color: #decba7
     }
     input, textarea {
-        border: 1px solid #decba7;
         background-color: #decba7;
         color: #1b1c1c;
     }
-    input:focus, textarea:focus, button:focus, button.border:hover {
+    input.border, textarea.border {
+        border: 2px solid #decba7;
+    }
+    input:focus, textarea:focus, button:focus {
+        outline: 1px #d78f05 solid;
+    }
+    input.border:focus, textarea.border:focus, button.border:focus {
         outline: 0;
         border: 2px solid #d78f05;
     }
@@ -32,5 +37,9 @@
     }
     button.border:hover {
         background-color: #1b1c1c;
+        border: 2px solid #d78f05;
+    }
+    button:focus {
+        outline: 1px #d78f05 solid;
     }
 }
