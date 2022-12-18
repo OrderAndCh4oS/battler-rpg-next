@@ -1,9 +1,9 @@
 import {ArmourType, EdgeType} from "./enum";
 
 export interface CoreStats {
-    intelligence: number;
-    strength: number;
-    dexterity: number;
+    int: number;
+    str: number;
+    dex: number;
 }
 
 export interface Actor extends CoreStats {

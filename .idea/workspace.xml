@@ -5,11 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ccaba1-0969-493c-81d3-07da33f2c025" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/two-player.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpg/generate-enemy.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/character-images.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/shuffle.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/armour-select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/armour-select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/offhand-select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/offhand-select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/page-wrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/page-wrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/weapon-select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/weapon-select.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/armour.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/armour.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpg/battle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/battle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/shields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/shields.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpg/weapons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/weapons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,25 +48,31 @@
     <option name="showMembers" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/seancooper/code/rpg-battler/public/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/seancooper/code/rpg-battler/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/seancooper/code/rpg-battler/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/seancooper/code/rpg-battler/pages",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/seancooper/code/rpg-battler/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/seancooper/code/rpg-battler/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JavaScript"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/components" />
       <recent name="$PROJECT_DIR$" />
@@ -64,6 +81,16 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/rpg" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="scratch_52.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$APPLICATION_CONFIG_DIR$/scratches/scratch_52.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.scratch_52.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -79,7 +106,7 @@
       <workItem from="1670759218749" duration="11278000" />
       <workItem from="1670778441581" duration="4212000" />
       <workItem from="1671322818102" duration="6296000" />
-      <workItem from="1671365029277" duration="663000" />
+      <workItem from="1671365029277" duration="8593000" />
     </task>
     <servers />
   </component>

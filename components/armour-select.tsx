@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {Armour, Item} from "../rpg/interface";
-import * as allArmours from '../rpg/armour';
+import allArmours from '../rpg/armour';
 import ItemSelect from "./item-select";
 
 interface IArmourSelectProps {
@@ -12,14 +12,17 @@ const isArmour = (item: Item | Armour): item is Armour => {
 }
 
 const ArmourSelect: FC<IArmourSelectProps> = ({setCharacterArmour}) => {
-    const armours = [...(Object.values(allArmours).sort((a, b) => a.price - b.price))];
+    const sortedArmours = [...(Object.values(allArmours).sort((a, b) => a.price - b.price))];
     const selectArmour = (item: Item) => {
         if (!isArmour(item)) return;
         setCharacterArmour(item);
     }
 
     return (
-        <ItemSelect items={armours} selectItem={selectArmour}/>
+        <ItemSelect
+            items={sortedArmours}
+            selectItem={selectArmour}
+        />
     );
 }
 

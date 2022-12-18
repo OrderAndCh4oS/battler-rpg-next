@@ -14,6 +14,12 @@ interface ILogger {
     log: (...args: string[]) => void;
 }
 
+export class NullLogger implements ILogger {
+    log(...args: string[]) {
+        // Do Nothing
+    }
+}
+
 export class Logger implements ILogger {
     log(...args: string[]) {
         console.log(...args);
@@ -75,11 +81,11 @@ class Battler {
     }
 
     private getWeight(actor: Actor) {
-        return Math.max(0, (actor.armour.weight + actor.mainHand.weight + this.getOffhandWeight(actor.offHand)) - (actor.strength / 2));
+        return Math.max(0, (actor.armour.weight + actor.mainHand.weight + this.getOffhandWeight(actor.offHand)) - (actor.str / 2));
     }
 
     private getInitiative(actor: Actor, remainder: number): number {
-        return actor.intelligence - this.getWeight(actor) + (actor.dexterity / 4) + remainder;
+        return actor.int - this.getWeight(actor) + (actor.dex / 4) + remainder;
     }
 
     private getRoll() {
@@ -111,19 +117,19 @@ class Battler {
     }
 
     private getAttackHitChance(attacker: Character, defender: Character) {
-        const dexHitChance = (attacker.actor.dexterity - defender.actor.dexterity) / 10;
-        const intHitChance = (attacker.actor.intelligence - defender.actor.intelligence) / 10;
+        const dexHitChance = (attacker.actor.dex - defender.actor.dex) / 10;
+        const intHitChance = (attacker.actor.int - defender.actor.int) / 10;
         return Math.round(50 - dexHitChance + intHitChance);
     }
 
     private getDodgeChance(defender: Character, attacker: Character) {
-        const dexDodgeChance = (defender.actor.dexterity - attacker.actor.dexterity) / 10;
-        const intDodgeChance = (defender.actor.intelligence - attacker.actor.intelligence) / 10;
+        const dexDodgeChance = (defender.actor.dex - attacker.actor.dex) / 10;
+        const intDodgeChance = (defender.actor.int - attacker.actor.int) / 10;
         return Math.round(66 - dexDodgeChance + intDodgeChance);
     }
 
     private getCriticalHitChance(attacker: Character, defender: Character) {
-        return 90 - ((attacker.actor.intelligence - defender.actor.intelligence) / 10);
+        return 90 - ((attacker.actor.int - defender.actor.int) / 10);
     }
 
     private getDamageVariability(baseDamage: number, attacker: Character) {
@@ -141,7 +147,7 @@ class Battler {
     }
 
     private getBaseDamage(attacker: Character, weapon: Weapon) {
-        const strengthModifier = (attacker.actor.strength / 5) * ("damage" in attacker.actor.offHand ? 0.5 : 1);
+        const strengthModifier = (attacker.actor.str / 5) * ("damage" in attacker.actor.offHand ? 0.5 : 1);
         const baseDamage = weapon.damage + strengthModifier;
         return baseDamage - this.getDamageVariability(baseDamage, attacker);
     }
@@ -236,7 +242,7 @@ class Battler {
                 attackStats.damageStats = makeDamageStats(damage, defender.character.actor.armour.material, armourReduction);
             }
 
-            const woundStats = makeWoundStats(weapon, defender.character.actor.armour, attacker.character.actor.strength, isCriticalHit, damage, armourReduction);
+            const woundStats = makeWoundStats(weapon, defender.character.actor.armour, attacker.character.actor.str, isCriticalHit, damage, armourReduction);
             defender.roundStats.wounds.push(woundStats);
         }
 
@@ -257,13 +263,13 @@ class Battler {
     }
 
     private getAttacks(actor: Actor, attackRemainder: number = 0): { attacks: number, attackRemainder: number } {
-        let attacks = Math.max(0, Math.round((actor.dexterity + attackRemainder - this.getWeight(actor)) / 33));
-        attackRemainder = Math.max(0, (actor.dexterity + attackRemainder - this.getWeight(actor))) % 33;
+        let attacks = Math.max(0, Math.round((actor.dex + attackRemainder - this.getWeight(actor)) / 33));
+        attackRemainder = Math.max(0, (actor.dex + attackRemainder - this.getWeight(actor))) % 33;
         return {attacks, attackRemainder};
     }
 
     private getHealth(actor: Actor): number {
-        return actor.strength * 1.5;
+        return actor.str * 1.5;
     }
 
     private getOffhandWeight(offHand: Weapon | Shield) {
