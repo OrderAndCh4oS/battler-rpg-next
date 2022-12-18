@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {Item, Weapon} from "../rpg/interface";
-import * as allWeapons from '../rpg/weapons';
+import weapons from '../rpg/weapons';
 import ItemSelect from "./item-select";
 
 interface IWeaponSelectProps {
@@ -12,14 +12,17 @@ const isWeapon = (item: Item | Weapon): item is Weapon => {
 }
 
 const WeaponSelect: FC<IWeaponSelectProps> = ({setCharacterWeapon}) => {
-    const weapons = [...(Object.values(allWeapons).sort((a, b) => a.price - b.price))];
+    const sortedWeapons = [...(Object.values(weapons).sort((a, b) => a.price - b.price))];
     const selectWeapon = (item: Item) => {
         if (!isWeapon(item)) return;
         setCharacterWeapon(item);
     }
 
     return (
-        <ItemSelect items={weapons} selectItem={selectWeapon}/>
+        <ItemSelect
+            items={sortedWeapons}
+            selectItem={selectWeapon}
+        />
     );
 }
 

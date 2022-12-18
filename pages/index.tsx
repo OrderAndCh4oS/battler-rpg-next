@@ -1,73 +1,18 @@
 import React, {ChangeEvent, FC, MouseEvent, useEffect, useState} from "react";
 import {makeCharacter} from "../rpg/character";
-import {Combatant, CombatantStats, Item} from "../rpg/interface";
-import Battler, {LoggerRenderer} from "../rpg/battle";
+import {Character, Combatant, CombatantStats, Item} from "../rpg/interface";
+import Battler, {Logger, LoggerRenderer, NullLogger} from "../rpg/battle";
 import {getAttackRateStats, getBlockStats, getDodgeStats} from "../rpg/stats";
 import WeaponSelect from "../components/weapon-select";
 import ShieldSelect from "../components/offhand-select";
 import ArmourSelect from "../components/armour-select";
 import Image from "next/image";
+import characterImageList from "../utilities/character-images";
+import generateEnemy from "../rpg/generate-enemy";
 
 const Main: FC = () => {
-    const characterImageList = [
-        "0bc98a.png",
-        "0f73ba.jpg",
-        "1ecb32.jpg",
-        "3ec130.jpg",
-        "4c3a5a.jpg",
-        "4f85c2.jpg",
-        "04fd82.png",
-        "6f9a78.jpg",
-        "8c0ffe.png",
-        "9ed390.jpg",
-        "30a66e.jpg",
-        "035d41.jpg",
-        "45e30c.jpg",
-        "61e5c0.png",
-        "73b9d5.png",
-        "99ad7d.jpg",
-        "163bf9.jpg",
-        "397fee.jpg",
-        "2633c7.jpg",
-        "3711d1.jpg",
-        "3744e2.jpg",
-        "4443bd.jpg",
-        "9938d6.jpg",
-        "053774.jpg",
-        "66090e.jpg",
-        "120449.jpg",
-        "123196.jpg",
-        "383135.jpg",
-        "512861.png",
-        "543196.jpg",
-        "617422.jpg",
-        "774049.jpg",
-        "aa270c.jpg",
-        "ac337e.jpg",
-        "af68b4.jpg",
-        "b4bdd6.jpg",
-        "b5c91d.jpg",
-        "b499b1.jpg",
-        "b8561b.jpg",
-        "b08789.jpg",
-        "cf1589.jpg",
-        "d5e49f.jpg",
-        "e7ed2b.jpg",
-        "e8e731.jpg",
-        "e49e42.jpg",
-        "ea804e.jpg",
-        "ece066.jpg",
-        "f5f98b.jpg",
-        "f07db3.jpg",
-        "faf630.jpg",
-        "fcc115.jpg",
-        "fce557.jpg",
-    ].reduce((arr, img) => (arr.splice(~~(Math.random() * arr.length), 0, img), arr), [] as string[]);
-
-    const [state, setState] = useState({
-        playerOne: makeCharacter("One", characterImageList[0]),
-        playerTwo: makeCharacter("Two", characterImageList[1])
-    });
+    const [player, setPlayer] = useState({...makeCharacter("Player One", characterImageList[0])});
+    const [enemy, setEnemy] = useState<Character | null>(null);
     const [logs, setLogs] = useState<string[]>([]);
     const [combatantStats, setCombatantStats] = useState<{
         combatantOne: Combatant,
@@ -86,196 +31,208 @@ const Main: FC = () => {
     const logger = new LoggerRenderer(addToLogs);
     const battler = new Battler(logger);
 
-    const updatePlayerName = (player: "playerOne" | "playerTwo") => (event: ChangeEvent<HTMLInputElement>) => {
+    const updatePlayerName = (event: ChangeEvent<HTMLInputElement>) => {
         const name = event.target.value;
-        setState(prevState => ({...prevState, [player]: {...prevState[player], name}}));
+        setPlayer(prevState => ({...prevState, name}));
     };
 
     const updatePlayerStat = (
-        player: "playerOne" | "playerTwo",
-        statKey: 'strength' | 'dexterity' | 'intelligence'
+        statKey: 'str' | 'dex' | 'int'
     ) => (event: ChangeEvent<HTMLInputElement>) => {
         const value = +event.target.value;
-        setState(prevState => ({
-            ...prevState,
-            [player]: {
-                ...prevState[player],
+        setPlayer(prevState => ({
+                ...prevState,
                 actor: {
-                    ...prevState[player].actor,
+                    ...prevState.actor,
                     [statKey]: value
                 }
             }
-        }));
+        ));
     };
 
-    const pickRandomImage = (
-        player: "playerOne" | "playerTwo",
-    ) => (event: MouseEvent<HTMLButtonElement>) => {
-        setState(prevState => ({
-            ...prevState,
-            [player]: {
-                ...prevState[player],
+    const pickRandomImage = () => {
+        setPlayer(prevState => ({
+                ...prevState,
                 image: characterImageList[~~(Math.random() * characterImageList.length)]
             }
-        }));
+        ));
     };
 
     const setCharacterItem = (
-        player: "playerOne" | "playerTwo",
         itemKey: 'mainHand' | 'offHand' | 'armour'
     ) => (item: Item) => {
-        setState(prevState => ({
-            ...prevState,
-            [player]: {
-                ...prevState[player],
+        setPlayer(prevState => ({
+                ...prevState,
                 actor: {
-                    ...prevState[player].actor,
+                    ...prevState.actor,
                     [itemKey]: item
                 }
             }
-        }));
+        ));
     };
 
-    useEffect(() => {
-        if (!combatantStats) return;
-        const {combatantOne, combatantTwo} = combatantStats;
-        const combatantOneStats: CombatantStats = {
-            attackRateStats: getAttackRateStats(combatantOne),
-            dodgeStats: getDodgeStats(combatantOne),
-            blockStats: getBlockStats(combatantOne)
-        };
+    const handleGenerateEnemy = () => {
+        const enemy = generateEnemy(player.actor);
+        // const logger = new NullLogger();
+        // const battler = new Battler(logger);
+        // const mockPlayer = {...player};
+        // const mockEnemy = {...enemy};
+        // let result: any;
+        // for(let i = 0; i < 10; i++) {
+        //     result = battler.start(mockPlayer, mockEnemy);
+        // }
+        // console.log(result!.combatantOne.character.wins);
+        // console.log(result!.combatantTwo.character.wins);
+        setEnemy(enemy);
+    };
 
-        const combatantTwoStats: CombatantStats = {
-            attackRateStats: getAttackRateStats(combatantTwo),
-            dodgeStats: getDodgeStats(combatantTwo),
-            blockStats: getBlockStats(combatantTwo)
-        };
-
-        setStats({combatantOneStats, combatantTwoStats});
-    }, [combatantStats]);
+    // useEffect(() => {
+    //     if (!combatantStats) return;
+    //     const {combatantOne, combatantTwo} = combatantStats;
+    //     const combatantOneStats: CombatantStats = {
+    //         attackRateStats: getAttackRateStats(combatantOne),
+    //         dodgeStats: getDodgeStats(combatantOne),
+    //         blockStats: getBlockStats(combatantOne)
+    //     };
+    //
+    //     const combatantTwoStats: CombatantStats = {
+    //         attackRateStats: getAttackRateStats(combatantTwo),
+    //         dodgeStats: getDodgeStats(combatantTwo),
+    //         blockStats: getBlockStats(combatantTwo)
+    //     };
+    //
+    //     setStats({combatantOneStats, combatantTwoStats});
+    // }, [combatantStats]);
 
     return (
         <div>
             <div>
-                <h1 className='pb-4 text-3xl'>
-                    RPG Battler
-                </h1>
                 <div className='pb-4'>
                     <h2 className='pb-4 text-2xl'>Player One</h2>
                     <div>
-                        <Image className='pb-2' src={`/images/${state.playerOne.image}`} alt='Player one avatar' width={256}
-                               height={256}/>
-                        <button className='text-3xl mb-4 py-0 px-0.5' onClick={pickRandomImage('playerOne')}>⟳</button>
+                        <Image
+                            className='pb-2'
+                            src={`/images/${player.image}`}
+                            alt='Player one avatar'
+                            width={256}
+                            height={256}
+                        />
+                        <button className='text-3xl mb-4 py-0 px-0.5' onClick={pickRandomImage}>⟳</button>
                     </div>
                     <div className='flex gap-4'>
                         <div className='flex flex-col gap-1 mb-2'>
                             <label>Name</label>
                             <input
                                 className='py-1 px-2 border rounded'
-                                onChange={updatePlayerName("playerOne")}
-                                value={state.playerOne.name}
+                                onChange={updatePlayerName}
+                                value={player.name}
                             />
                         </div>
                         <div className='flex flex-col gap-1 mb-2'>
                             <label>Str</label>
                             <input
                                 className='py-1 px-2 border rounded'
-                                onChange={updatePlayerStat("playerOne", "strength")}
-                                value={state.playerOne.actor.strength}
+                                onChange={updatePlayerStat("str")}
+                                value={player.actor.str}
                             />
                         </div>
                         <div className='flex flex-col gap-1 mb-2'>
                             <label>Dex</label>
                             <input
                                 className='py-1 px-2 border rounded'
-                                onChange={updatePlayerStat("playerOne", "dexterity")}
-                                value={state.playerOne.actor.dexterity}
+                                onChange={updatePlayerStat("dex")}
+                                value={player.actor.dex}
                             />
                         </div>
                         <div className='flex flex-col gap-1 mb-2'>
                             <label>Int</label>
                             <input
                                 className='py-1 px-2 border rounded'
-                                onChange={updatePlayerStat("playerOne", "intelligence")}
-                                value={state.playerOne.actor.intelligence}
+                                onChange={updatePlayerStat("int")}
+                                value={player.actor.int}
                             />
                         </div>
                     </div>
-                    <p>Main hand: {state.playerOne.actor.mainHand.name}</p>
-                    <p>Off hand: {state.playerOne.actor.offHand.name}</p>
-                    <p className='pb-4'>Armour: {state.playerOne.actor.armour.name}</p>
+                    <p>Main hand: {player.actor.mainHand.name}</p>
+                    <p>Off hand: {player.actor.offHand.name}</p>
+                    <p className='pb-4'>Armour: {player.actor.armour.name}</p>
                     <label className='pb-2 block border-b mb-4 border-b-white'>Select Weapon</label>
-                    <WeaponSelect setCharacterWeapon={setCharacterItem('playerOne', 'mainHand')}/>
+                    <WeaponSelect setCharacterWeapon={setCharacterItem('mainHand')}/>
                     <label className='pb-2 block border-b mb-4 border-b-white'>Select Offhand Weapon</label>
-                    <WeaponSelect setCharacterWeapon={setCharacterItem('playerOne', 'offHand')}/>
+                    <WeaponSelect setCharacterWeapon={setCharacterItem('offHand')}/>
                     <label className='pb-2 block border-b mb-4 border-b-white'>Select Shield (Offhand)</label>
-                    <ShieldSelect setCharacterShield={setCharacterItem('playerOne', 'offHand')}/>
+                    <ShieldSelect setCharacterShield={setCharacterItem('offHand')}/>
                     <label className='pb-2 block border-b mb-4 border-b-white'>Select Armour</label>
-                    <ArmourSelect setCharacterArmour={setCharacterItem('playerOne', 'armour')}/>
-                </div>
-                <div className='pb-4'>
-                    <h2 className='pb-4 text-2xl'>Player Two</h2>
-                    <div>
-                        <Image className='pb-2' src={`/images/${state.playerTwo.image}`} alt='Player two avatar' width={256}
-                               height={256}/>
-                        <button className='text-3xl mb-4 py-0 px-0.5' onClick={pickRandomImage('playerTwo')}>⟳</button>
-                    </div>
-                    <div className='flex gap-4'>
-                        <div className='flex flex-col gap-1 mb-2'>
-                            <label>Name</label>
-                            <input
-                                className='py-1 px-2 border rounded'
-                                onChange={updatePlayerName("playerTwo")}
-                                value={state.playerTwo.name}
-                            />
-                        </div>
-                        <div className='flex flex-col gap-1 mb-2'>
-                            <label>Str</label>
-                            <input
-                                className='py-1 px-2 border rounded'
-                                onChange={updatePlayerStat("playerTwo", "strength")}
-                                value={state.playerTwo.actor.strength}
-                            />
-                        </div>
-                        <div className='flex flex-col gap-1 mb-2'>
-                            <label>Dex</label>
-                            <input
-                                className='py-1 px-2 border rounded'
-                                onChange={updatePlayerStat("playerTwo", "dexterity")}
-                                value={state.playerTwo.actor.dexterity}
-                            />
-                        </div>
-                        <div className='flex flex-col gap-1 mb-2'>
-                            <label>Int</label>
-                            <input
-                                className='py-1 px-2 border rounded'
-                                onChange={updatePlayerStat("playerTwo", "intelligence")}
-                                value={state.playerTwo.actor.intelligence}
-                            />
-                        </div>
-                    </div>
-                    <p>Main hand: {state.playerTwo.actor.mainHand.name}</p>
-                    <p>Off hand: {state.playerTwo.actor.offHand.name}</p>
-                    <p className='pb-4'>Armour: {state.playerTwo.actor.armour.name}</p>
-                    <label className='pb-2 block border-b mb-4 border-b-white'>Select Weapon</label>
-                    <WeaponSelect setCharacterWeapon={setCharacterItem('playerTwo', 'mainHand')}/>
-                    <label className='pb-2 block border-b mb-4 border-b-white'>Select Offhand Weapon</label>
-                    <WeaponSelect setCharacterWeapon={setCharacterItem('playerTwo', 'offHand')}/>
-                    <label className='pb-2 block border-b mb-4 border-b-white'>Select Shield (Offhand)</label>
-                    <ShieldSelect setCharacterShield={setCharacterItem('playerTwo', 'offHand')}/>
-                    <label className='pb-2 block border-b mb-4 border-b-white'>Select Armour</label>
-                    <ArmourSelect setCharacterArmour={setCharacterItem('playerTwo', 'armour')}/>
+                    <ArmourSelect setCharacterArmour={setCharacterItem('armour')}/>
                 </div>
                 <button
-                    className='text-white bg-red-700 hover:bg-red-500 rounded py-1 px-4 mb-4'
-                    onClick={() => {
-                        setLogs([]);
-                        setStats(null);
-                        setCombatantStats(null);
-                        setCombatantStats(battler.start(state.playerOne, state.playerTwo));
-                    }}
-                >Fight!
+                    className='text-white bg-green-700 hover:bg-green-500 rounded py-1 px-4 mb-4'
+                    onClick={handleGenerateEnemy}
+                >Generate Enemy
                 </button>
+                {enemy && (
+                    <div className='pb-4'>
+                        <h2 className='pb-4 text-2xl'>Enemy</h2>
+                        <div>
+                            <Image
+                                className='pb-2'
+                                src={`/images/${enemy.image}`}
+                                alt='Player two avatar'
+                                width={256}
+                                height={256}
+                            />
+                        </div>
+                        <div className='flex gap-4'>
+                            <div className='flex flex-col gap-1 mb-2'>
+                                <label>Name</label>
+                                <input
+                                    readOnly
+                                    className='py-1 px-2 border rounded'
+                                    value={enemy.name}
+                                />
+                            </div>
+                            <div className='flex flex-col gap-1 mb-2'>
+                                <label>Str</label>
+                                <input
+                                    readOnly
+                                    className='py-1 px-2 border rounded'
+                                    value={enemy.actor.str}
+                                />
+                            </div>
+                            <div className='flex flex-col gap-1 mb-2'>
+                                <label>Dex</label>
+                                <input
+                                    readOnly
+                                    className='py-1 px-2 border rounded'
+                                    value={enemy.actor.dex}
+                                />
+                            </div>
+                            <div className='flex flex-col gap-1 mb-2'>
+                                <label>Int</label>
+                                <input
+                                    readOnly
+                                    className='py-1 px-2 border rounded'
+                                    value={enemy.actor.int}
+                                />
+                            </div>
+                        </div>
+                        <p>Main hand: {enemy.actor.mainHand.name}</p>
+                        <p>Off hand: {enemy.actor.offHand.name}</p>
+                        <p className='pb-4'>Armour: {enemy.actor.armour.name}</p>
+                    </div>
+                )}
+                {enemy && (
+                    <button
+                        className='text-white bg-red-700 hover:bg-red-500 rounded py-1 px-4 mb-4'
+                        onClick={() => {
+                            setLogs([]);
+                            setStats(null);
+                            setCombatantStats(null);
+                            setCombatantStats(battler.start(player, enemy));
+                        }}
+                    >Fight!
+                    </button>
+                )}
             </div>
             <div className='pb-4'>
                 <h2 className='pb-4 text-2xl'>Battle Log</h2>
