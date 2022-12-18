@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useEffect, useState} from "react";
+import React, {ChangeEvent, FC, MouseEvent, useEffect, useState} from "react";
 import {makeCharacter} from "../rpg/character";
 import {Combatant, CombatantStats, Item} from "../rpg/interface";
 import Battler, {LoggerRenderer} from "../rpg/battle";
@@ -6,11 +6,21 @@ import {getAttackRateStats, getBlockStats, getDodgeStats} from "../rpg/stats";
 import WeaponSelect from "../components/weapon-select";
 import ShieldSelect from "../components/offhand-select";
 import ArmourSelect from "../components/armour-select";
+import Image from "next/image";
 
 const Main: FC = () => {
+    const characterImageList = [
+        "0bc98a.png",
+        "04fd82.png",
+        "8c0ffe.png",
+        "61e5c0.png",
+        "73b9d5.png",
+        "512861.png",
+    ].reduce((arr, img) => (arr.splice(~~(Math.random() * arr.length), 0, img), arr), [] as string[]);
+
     const [state, setState] = useState({
-        playerOne: makeCharacter("One"),
-        playerTwo: makeCharacter("Two")
+        playerOne: makeCharacter("One", characterImageList[0]),
+        playerTwo: makeCharacter("Two", characterImageList[1])
     });
     const [logs, setLogs] = useState<string[]>([]);
     const [combatantStats, setCombatantStats] = useState<{
@@ -26,7 +36,6 @@ const Main: FC = () => {
         const nextLog = logs.join(", ");
         setLogs(prevState => ([...prevState, nextLog]));
     };
-
 
     const logger = new LoggerRenderer(addToLogs);
     const battler = new Battler(logger);
@@ -49,6 +58,18 @@ const Main: FC = () => {
                     ...prevState[player].actor,
                     [statKey]: value
                 }
+            }
+        }));
+    };
+
+    const pickRandomImage = (
+        player: "playerOne" | "playerTwo",
+    ) => (event: MouseEvent<HTMLButtonElement>) => {
+        setState(prevState => ({
+            ...prevState,
+            [player]: {
+                ...prevState[player],
+                image: characterImageList[~~(Math.random() * characterImageList.length)]
             }
         }));
     };
@@ -94,37 +115,44 @@ const Main: FC = () => {
                     RPG Battler
                 </h1>
                 <div className='pb-4'>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Player One Name</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerName("playerOne")}
-                            value={state.playerOne.name}
-                        />
+                    <div>
+                        <Image src={`/images/${state.playerOne.image}`} alt='Player one avatar' width={256}
+                               height={256}/>
+                        <button onClick={pickRandomImage('playerOne')}>⟳</button>
                     </div>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Str</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerStat("playerOne", "strength")}
-                            value={state.playerOne.actor.strength}
-                        />
-                    </div>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Dex</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerStat("playerOne", "dexterity")}
-                            value={state.playerOne.actor.dexterity}
-                        />
-                    </div>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Int</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerStat("playerOne", "intelligence")}
-                            value={state.playerOne.actor.intelligence}
-                        />
+                    <div className='flex gap-4'>
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Player One Name</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerName("playerOne")}
+                                value={state.playerOne.name}
+                            />
+                        </div>
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Str</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerStat("playerOne", "strength")}
+                                value={state.playerOne.actor.strength}
+                            />
+                        </div>
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Dex</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerStat("playerOne", "dexterity")}
+                                value={state.playerOne.actor.dexterity}
+                            />
+                        </div>
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Int</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerStat("playerOne", "intelligence")}
+                                value={state.playerOne.actor.intelligence}
+                            />
+                        </div>
                     </div>
                     <p className='pb-4'>Main hand: {state.playerOne.actor.mainHand.name}</p>
                     <label>Select Weapon</label>
@@ -138,37 +166,45 @@ const Main: FC = () => {
                     <ArmourSelect setCharacterArmour={setCharacterItem('playerOne', 'armour')}/>
                 </div>
                 <div className='pb-4'>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Player Two Name</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerName("playerTwo")}
-                            value={state.playerTwo.name}
-                        />
+                    <div>
+                        <Image src={`/images/${state.playerTwo.image}`} alt='Player one avatar' width={256}
+                               height={256}/>
+                        <button onClick={pickRandomImage('playerOne')}>⟳</button>
                     </div>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Str</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerStat("playerTwo", "strength")}
-                            value={state.playerTwo.actor.strength}
-                        />
-                    </div>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Dex</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerStat("playerTwo", "dexterity")}
-                            value={state.playerTwo.actor.dexterity}
-                        />
-                    </div>
-                    <div className='flex flex-col gap-1 mb-2'>
-                        <label>Int</label>
-                        <input
-                            className='py-1 px-2 border rounded'
-                            onChange={updatePlayerStat("playerTwo", "intelligence")}
-                            value={state.playerTwo.actor.intelligence}
-                        />
+                    <div className='flex gap-4'>
+
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Player Two Name</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerName("playerTwo")}
+                                value={state.playerTwo.name}
+                            />
+                        </div>
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Str</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerStat("playerTwo", "strength")}
+                                value={state.playerTwo.actor.strength}
+                            />
+                        </div>
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Dex</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerStat("playerTwo", "dexterity")}
+                                value={state.playerTwo.actor.dexterity}
+                            />
+                        </div>
+                        <div className='flex flex-col gap-1 mb-2'>
+                            <label>Int</label>
+                            <input
+                                className='py-1 px-2 border rounded'
+                                onChange={updatePlayerStat("playerTwo", "intelligence")}
+                                value={state.playerTwo.actor.intelligence}
+                            />
+                        </div>
                     </div>
                     <p className='pb-4'>Main hand: {state.playerTwo.actor.mainHand.name}</p>
                     <label>Select Weapon</label>

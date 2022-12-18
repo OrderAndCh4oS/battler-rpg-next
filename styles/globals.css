@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.gradient {
+    display: inline-block;
+    height: 250px;
+    width: 80%;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px #0002;
+}
+
+@layer base {
+    html {
+        font-family: 'Crimson Text', serif;
+        background: linear-gradient(33deg, #1b1c1c, #1b2c2c);;
+        color: #decba7
+    }
+    input, textarea {
+        border: 1px solid #decba7;
+        background-color: #decba7;
+        color: #1b1c1c;
+    }
+    input:focus, textarea:focus, button:focus, button.border:hover {
+        outline: 0;
+        border: 2px solid #d78f05;
+    }
+    button.border {
+        border: 2px solid #decba7;
+    }
+    button.border:hover {
+        background-color: #1b1c1c;
+    }
+}

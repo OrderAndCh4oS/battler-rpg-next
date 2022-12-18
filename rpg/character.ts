@@ -17,10 +17,12 @@ const baseCharacter: Character = {
     experience: 0,
     gold: 0,
     wins: 0,
-    losses: 0
+    losses: 0,
+    image: ''
 };
 
-export const makeCharacter = (name: string) => ({
+export const makeCharacter = (name: string, image: string) => ({
     ...baseCharacter,
-    name
+    name,
+    image
 });

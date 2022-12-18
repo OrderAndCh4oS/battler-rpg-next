@@ -107,6 +107,7 @@ export interface Character {
     actor: Actor;
     wins: number;
     losses: number;
+    image: string;
 }
 
 export interface BattleResults {

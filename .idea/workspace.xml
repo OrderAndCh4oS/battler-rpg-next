@@ -5,30 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ccaba1-0969-493c-81d3-07da33f2c025" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/armour-select.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/item-select.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/offhand-select.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/page-wrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/weapon-select.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/armour-reductions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/armour.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/battle.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/character.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/shields.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/stats.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpg/weapons.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/hello.ts" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/04fd82.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/0bc98a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/512861.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/61e5c0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/73b9d5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/8c0ffe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/item-select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/item-select.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg/interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -61,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/seancooper/code/rpg-battler/components",
+    "last_opened_file_path": "/Users/seancooper/code/rpg-battler/public/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,6 +65,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/components" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
@@ -96,6 +87,7 @@
       <workItem from="1670759077123" duration="132000" />
       <workItem from="1670759218749" duration="11278000" />
       <workItem from="1670778441581" duration="4212000" />
+      <workItem from="1671322818102" duration="2798000" />
     </task>
     <servers />
   </component>
