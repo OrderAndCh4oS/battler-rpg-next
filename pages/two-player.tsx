@@ -103,9 +103,6 @@ const Main: FC = () => {
     return (
         <div>
             <div>
-                <h1 className='pb-4 text-3xl'>
-                    RPG Battler
-                </h1>
                 <div className='pb-4'>
                     <h2 className='pb-4 text-2xl'>Player One</h2>
                     <div>

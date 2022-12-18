@@ -8,16 +8,12 @@ const PageWrapper: FC<{ children: ReactNode }> = ({children}) =>
             <h1 className='pb-4 text-3xl'>
                 RPG Battler
             </h1>
-            <div  className='flex ml-auto gap-6'>
+            <div className='flex ml-auto gap-6'>
                 <Link href="/">
-                    <a>
-                        One Player
-                    </a>
+                    One Player
                 </Link>
                 <Link href="two-player">
-                    <a>
-                        Two Player
-                    </a>
+                    Two Player
                 </Link>
             </div>
         </header>
