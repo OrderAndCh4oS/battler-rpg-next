@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ccaba1-0969-493c-81d3-07da33f2c025" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/utilities/deep-clone.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/armour-select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/armour-select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/offhand-select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/offhand-select.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpg/armour.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/armour.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpg/battle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/battle.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpg/generate-enemy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/generate-enemy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpg/shields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rpg/shields.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

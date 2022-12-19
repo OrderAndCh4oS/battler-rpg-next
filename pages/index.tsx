@@ -1,21 +1,21 @@
-import React, {ChangeEvent, FC, MouseEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FC, useEffect, useState} from "react";
 import {makeCharacter} from "../rpg/character";
 import {Character, Combatant, CombatantStats, Item} from "../rpg/interface";
-import Battler, {Logger, LoggerRenderer, NullLogger} from "../rpg/battle";
+import Battler, {LoggerRenderer, NullLogger} from "../rpg/battle";
 import {getAttackRateStats, getBlockStats, getDodgeStats} from "../rpg/stats";
 import WeaponSelect from "../components/weapon-select";
-import ShieldSelect, {isShield} from "../components/offhand-select";
+import ShieldSelect from "../components/offhand-select";
 import ArmourSelect from "../components/armour-select";
 import Image from "next/image";
 import characterImageList from "../utilities/character-images";
 import generateEnemy from "../rpg/generate-enemy";
 import deepClone from "../utilities/deep-clone";
-import shields from "../rpg/shields";
 
 const Main: FC = () => {
     const [isGeneratingEnemy, setIsGeneratingEnemy] = useState(false);
     const [player, setPlayer] = useState({...makeCharacter("Player One", characterImageList[0])});
     const [enemy, setEnemy] = useState<Character | null>(null);
+    const [winChance, setWinChance] = useState<string | null>(null);
     const [logs, setLogs] = useState<string[]>([]);
     const [combatantStats, setCombatantStats] = useState<{
         combatantOne: Combatant,
@@ -81,13 +81,14 @@ const Main: FC = () => {
         const battler = new Battler(logger);
         let result: any;
         const wl = {w: 0, l: 0}
-        for(let i = 0; i < 100; i++) {
+        const rounds = 100
+        for (let i = 0; i < rounds; i++) {
             const mockPlayer = deepClone(player);
             const mockEnemy = deepClone(enemy);
             result = battler.start(mockPlayer, mockEnemy);
-            if(mockPlayer.wins) wl.w++; else wl.l++;
+            if (mockPlayer.wins) wl.w++; else wl.l++;
         }
-        console.log(wl);
+        setWinChance(`${~~(wl.w / rounds * 100)}%`)
         setEnemy(enemy);
         setIsGeneratingEnemy(false);
     };
@@ -177,9 +178,9 @@ const Main: FC = () => {
                 >Generate Enemy
                 </button>
                 {isGeneratingEnemy && <p>Generating…</p>}
-                {enemy && (
+                {enemy && winChance && (
                     <div className='pb-4'>
-                        <h2 className='pb-4 text-2xl'>Enemy</h2>
+                        <h2 className='pb-4 text-2xl'>Enemy (Win chance: {winChance})</h2>
                         <div>
                             <Image
                                 className='pb-2'
