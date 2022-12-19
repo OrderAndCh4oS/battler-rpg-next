@@ -33,9 +33,7 @@ const generateEnemy = (actor: Actor): Character => {
     enemy.actor
     const modifier = getPercentValue(statSum, 0.2);
     const statCapModifierRoll = Math.round(Math.random() * modifier - modifier * 0.75);
-    console.log('scmr', statCapModifierRoll);
     let statCap = statSum + statCapModifierRoll
-    console.log('sc', statCap);
     while(statCap > 0) {
         const roll = Math.random() * 6 + 1;
         const stat = ['str', 'dex', 'int'][~~(Math.random() * 3)] as 'str' | 'dex' | 'int'

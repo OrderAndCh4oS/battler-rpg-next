@@ -81,13 +81,14 @@ const Main: FC = () => {
         const battler = new Battler(logger);
         let result: any;
         const wl = {w: 0, l: 0}
-        const rounds = 100
+        const rounds = 1000;
         for (let i = 0; i < rounds; i++) {
-            const mockPlayer = deepClone(player);
+            const mockPlayer = deepClone({...player, wins: 0});
             const mockEnemy = deepClone(enemy);
             result = battler.start(mockPlayer, mockEnemy);
             if (mockPlayer.wins) wl.w++; else wl.l++;
         }
+        console.log(wl);
         setWinChance(`${~~(wl.w / rounds * 100)}%`)
         setEnemy(enemy);
         setIsGeneratingEnemy(false);
