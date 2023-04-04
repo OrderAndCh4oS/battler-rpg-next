@@ -108,6 +108,9 @@ export interface Character {
     wins: number;
     losses: number;
     image: string;
+    inventory: (Weapon | Armour | Shield)[],
+    attributePoints: number,
+    level: number
 }
 
 export interface BattleResults {

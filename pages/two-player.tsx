@@ -8,11 +8,12 @@ import ShieldSelect from "../components/offhand-select";
 import ArmourSelect from "../components/armour-select";
 import Image from "next/image";
 import characterImageList from "../utilities/character-images";
+import generatePlayer from "../rpg/generate-player";
 
 const Main: FC = () => {
     const [state, setState] = useState({
-        playerOne: makeCharacter("One", characterImageList[0]),
-        playerTwo: makeCharacter("Two", characterImageList[1])
+        playerOne: generatePlayer('Player One'),
+        playerTwo: generatePlayer('Player Two')
     });
     const [logs, setLogs] = useState<string[]>([]);
     const [combatantStats, setCombatantStats] = useState<{

@@ -15,7 +15,7 @@ const ItemSelect: FC<IItemSelectProps> = ({items, selectItem}) => {
                     key={`item_${item.name}_${Math.random().toString().slice(2)}`}
                     onClick={() => selectItem(item)}
                 >
-                    {item.name}
+                    {item.name}, weight: {item.weight}, cost: {item.price}g
                 </button>
             )}
         </div>

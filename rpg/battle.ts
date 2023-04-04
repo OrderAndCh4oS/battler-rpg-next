@@ -9,6 +9,7 @@ import {
     makeWoundStats
 } from "./stats";
 import {getArmourReduction} from "./armour-reductions";
+import getXpLevels from "../utilities/get-xp-levels";
 
 interface ILogger {
     log: (...args: string[]) => void;
@@ -60,6 +61,8 @@ class Battler {
             }
 
             if (defender.health <= 0) {
+                attacker.roundStats.winner = true;
+                defender.roundStats.winner = false;
                 this.handleBattleEnd(attacker, defender);
                 break;
             }
@@ -252,10 +255,6 @@ class Battler {
 
     private handleBattleEnd(attacker: Combatant, defender: Combatant) {
         attacker.character.wins += 1;
-        attacker.character.experience += 200;
-        defender.character.experience += 75;
-        attacker.character.gold += 10;
-        defender.character.gold += 5;
         defender.character.losses += 1;
         this.logger.log(`${attacker.character.name} wins`);
         this.logger.log(`${attacker.character.name} health: ${attacker.health}`);

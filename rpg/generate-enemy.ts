@@ -14,14 +14,13 @@ const filterByRemainingGold = (gold: number) => (item: Item) => {
     return item.price <= gold + leeway + modifier;
 }
 
-const generateEnemy = (actor: Actor): Character => {
-    const statSum = actor.str + actor.dex + actor.int;
+const generateEnemy = (actor: Actor, level: number): Character => {
     let gold = actor.mainHand.price + actor.offHand.price + actor.armour.price;
     const enemy = makeCharacter('enemy', pickRandomCharacterImage());
     const sortedWeapons = [...(Object.values(weapons).sort((a, b) => a.price - b.price))];
     const sortedShields = [...(Object.values(shields).sort((a, b) => a.price - b.price))];
     const sortedArmours = [...(Object.values(armours).sort((a, b) => a.price - b.price))];
-    enemy.actor.mainHand = shuffle(sortedWeapons.filter(weapon => weapon.price <= gold)).pop() ?? weapons.fist;
+    enemy.actor.mainHand = shuffle(sortedWeapons.filter(filterByRemainingGold(gold))).pop() ?? weapons.fist;
     gold -= enemy.actor.mainHand.price;
     enemy.actor.offHand = shuffle([
             ...sortedWeapons.filter(filterByRemainingGold(gold)),
@@ -31,14 +30,15 @@ const generateEnemy = (actor: Actor): Character => {
     gold -= enemy.actor.offHand.price;
     enemy.actor.armour = shuffle(sortedArmours.filter(filterByRemainingGold(gold))).pop() ?? armours.cloth;
     enemy.actor
-    const modifier = getPercentValue(statSum, 0.2);
+    const statPoints = 15;
+    const modifier = getPercentValue(statPoints, 0.3);
     const statCapModifierRoll = Math.round(Math.random() * modifier - modifier * 0.75);
-    let statCap = statSum + statCapModifierRoll
+    let statCap = statPoints + statCapModifierRoll + level * 5
     while(statCap > 0) {
         const roll = Math.random() * 6 + 1;
         const stat = ['str', 'dex', 'int'][~~(Math.random() * 3)] as 'str' | 'dex' | 'int'
         const value = Math.round(Math.min(statCap, roll));
-        enemy.actor[stat] += value
+        enemy.actor[stat] += Math.min(value, statCap);
         statCap -= value;
     }
 

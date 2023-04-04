@@ -1,7 +1,6 @@
 import {Armour, Weapon} from "./interface";
 import {ArmourType, EdgeType} from "./enum";
 
-
 export function getBluntEdgeArmourReduction(armour: Armour): number {
     switch (armour.material) {
         case ArmourType.none:

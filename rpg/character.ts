@@ -3,9 +3,9 @@ import weapons from "./weapons";
 import armours from "./armour";
 
 const makeBaseActor = (): Actor => ({
-    int: 1,
-    str: 1,
-    dex: 1,
+    int: 3,
+    str: 3,
+    dex: 3,
     mainHand: weapons.fist,
     offHand: weapons.fist,
     armour: armours.cloth
@@ -18,7 +18,10 @@ const makeBaseCharacter = (): Character => ({
     gold: 0,
     wins: 0,
     losses: 0,
-    image: ''
+    image: '',
+    inventory: [],
+    attributePoints: 0,
+    level: 1
 });
 
 export const makeCharacter = (name: string, image: string): Character => ({

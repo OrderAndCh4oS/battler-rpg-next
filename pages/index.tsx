@@ -1,5 +1,4 @@
 import React, {ChangeEvent, FC, useEffect, useState} from "react";
-import {makeCharacter} from "../rpg/character";
 import {Character, Combatant, CombatantStats, Item} from "../rpg/interface";
 import Battler, {LoggerRenderer, NullLogger} from "../rpg/battle";
 import {getAttackRateStats, getBlockStats, getDodgeStats} from "../rpg/stats";
@@ -10,12 +9,18 @@ import Image from "next/image";
 import characterImageList from "../utilities/character-images";
 import generateEnemy from "../rpg/generate-enemy";
 import deepClone from "../utilities/deep-clone";
+import generatePlayer from "../rpg/generate-player";
+import getXpLevels from "../utilities/get-xp-levels";
+import getXp from "../utilities/get-xp";
+import getGold from "../utilities/get-gold";
+
+const levels = getXpLevels(200, 1.5, 50);
 
 const Main: FC = () => {
     const [isGeneratingEnemy, setIsGeneratingEnemy] = useState(false);
-    const [player, setPlayer] = useState({...makeCharacter("Player One", characterImageList[0])});
+    const [player, setPlayer] = useState(generatePlayer('Player One'));
     const [enemy, setEnemy] = useState<Character | null>(null);
-    const [winChance, setWinChance] = useState<string | null>(null);
+    const [winChance, setWinChance] = useState<number | null>(null);
     const [logs, setLogs] = useState<string[]>([]);
     const [combatantStats, setCombatantStats] = useState<{
         combatantOne: Combatant,
@@ -43,14 +48,22 @@ const Main: FC = () => {
         statKey: 'str' | 'dex' | 'int'
     ) => (event: ChangeEvent<HTMLInputElement>) => {
         const value = +event.target.value;
-        setPlayer(prevState => ({
-                ...prevState,
-                actor: {
-                    ...prevState.actor,
-                    [statKey]: value
-                }
+        setPlayer(prevState => {
+            const attributePointDiff = value - prevState.actor[statKey];
+            if(attributePointDiff > prevState.attributePoints) {
+                return prevState;
             }
-        ));
+            const attributePoints = prevState.attributePoints - attributePointDiff;
+            return ({
+                    ...prevState,
+                    attributePoints,
+                    actor: {
+                        ...prevState.actor,
+                        [statKey]: value
+                    }
+                }
+            );
+        });
     };
 
     const pickRandomImage = () => {
@@ -64,8 +77,10 @@ const Main: FC = () => {
     const setCharacterItem = (
         itemKey: 'mainHand' | 'offHand' | 'armour'
     ) => (item: Item) => {
+        if(item.price > player.gold) return;
         setPlayer(prevState => ({
                 ...prevState,
+                gold: prevState.gold - item.price,
                 actor: {
                     ...prevState.actor,
                     [itemKey]: item
@@ -76,7 +91,7 @@ const Main: FC = () => {
 
     const handleGenerateEnemy = () => {
         setIsGeneratingEnemy(true);
-        const enemy = generateEnemy(player.actor);
+        const enemy = generateEnemy(player.actor, player.level);
         const logger = new NullLogger();
         const battler = new Battler(logger);
         let result: any;
@@ -88,8 +103,7 @@ const Main: FC = () => {
             result = battler.start(mockPlayer, mockEnemy);
             if (mockPlayer.wins) wl.w++; else wl.l++;
         }
-        console.log(wl);
-        setWinChance(`${~~(wl.w / rounds * 100)}%`)
+        setWinChance(wl.w / rounds)
         setEnemy(enemy);
         setIsGeneratingEnemy(false);
     };
@@ -111,6 +125,23 @@ const Main: FC = () => {
 
         setStats({combatantOneStats, combatantTwoStats});
     }, [combatantStats]);
+
+    const handleBattle = () => {
+        if(!enemy || !winChance) throw new Error('enemy or winChance not set');
+        setLogs([]);
+        setStats(null);
+        setCombatantStats(null);
+        const result = battler.start(player, enemy);
+        if(result.combatantOne.roundStats.winner) {
+            result.combatantOne.character.experience += getXp(winChance);
+            result.combatantOne.character.gold += getGold(winChance);
+            if(player.level <= 50 && result.combatantOne.character.experience > levels[player.level - 1]) {
+                result.combatantOne.character.level++
+                result.combatantOne.character.attributePoints += 5
+            }
+        }
+        setCombatantStats(result);
+    };
 
     return (
         <div>
@@ -164,6 +195,10 @@ const Main: FC = () => {
                     <p>Main hand: {player.actor.mainHand.name}</p>
                     <p>Off hand: {player.actor.offHand.name}</p>
                     <p className='pb-4'>Armour: {player.actor.armour.name}</p>
+                    <p>Gold: {player.gold}</p>
+                    <p>Attribute Points: {player.attributePoints}</p>
+                    <p>Level: {player.level}</p>
+                    <p className='pb-4'>XP: {player.experience}</p>
                     <label className='pb-2 block border-b mb-4 border-b-white'>Select Weapon</label>
                     <WeaponSelect setCharacterWeapon={setCharacterItem('mainHand')}/>
                     <label className='pb-2 block border-b mb-4 border-b-white'>Select Offhand Weapon</label>
@@ -179,9 +214,9 @@ const Main: FC = () => {
                 >Generate Enemy
                 </button>
                 {isGeneratingEnemy && <p>Generating…</p>}
-                {enemy && winChance && (
+                {enemy && winChance !== null && (
                     <div className='pb-4'>
-                        <h2 className='pb-4 text-2xl'>Enemy (Win chance: {winChance})</h2>
+                        <h2 className='pb-4 text-2xl'>Enemy (Win: {~~(winChance * 100)}%, Gold: {getGold(winChance)}, XP: {getXp(winChance)})</h2>
                         <div>
                             <Image
                                 className='pb-2'
@@ -233,12 +268,7 @@ const Main: FC = () => {
                 {enemy && (
                     <button
                         className='text-white bg-red-700 hover:bg-red-500 rounded py-1 px-4 mb-4'
-                        onClick={() => {
-                            setLogs([]);
-                            setStats(null);
-                            setCombatantStats(null);
-                            setCombatantStats(battler.start(player, enemy));
-                        }}
+                        onClick={handleBattle}
                     >Fight!
                     </button>
                 )}
