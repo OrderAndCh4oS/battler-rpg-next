@@ -106,7 +106,7 @@ const Main: FC = () => {
                 <div className='pb-4'>
                     <h2 className='pb-4 text-2xl'>Player One</h2>
                     <div>
-                        <Image className='pb-2' src={`/images/${state.playerOne.image}`} alt='Player one avatar' width={256}
+                        <Image className='pb-2' src={`/mj-images/${state.playerOne.image}`} alt='Player one avatar' width={256}
                                height={256}/>
                         <button className='text-3xl mb-4 py-0 px-0.5' onClick={pickRandomImage('playerOne')}>⟳</button>
                     </div>
@@ -159,7 +159,7 @@ const Main: FC = () => {
                 <div className='pb-4'>
                     <h2 className='pb-4 text-2xl'>Player Two</h2>
                     <div>
-                        <Image className='pb-2' src={`/images/${state.playerTwo.image}`} alt='Player two avatar' width={256}
+                        <Image className='pb-2' src={`/mj-images/${state.playerTwo.image}`} alt='Player two avatar' width={256}
                                height={256}/>
                         <button className='text-3xl mb-4 py-0 px-0.5' onClick={pickRandomImage('playerTwo')}>⟳</button>
                     </div>

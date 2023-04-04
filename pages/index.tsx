@@ -120,7 +120,7 @@ const Main: FC = () => {
                     <div>
                         <Image
                             className='pb-2'
-                            src={`/images/${player.image}`}
+                            src={`/mj-images/${player.image}`}
                             alt='Player one avatar'
                             width={256}
                             height={256}
@@ -185,7 +185,7 @@ const Main: FC = () => {
                         <div>
                             <Image
                                 className='pb-2'
-                                src={`/images/${enemy.image}`}
+                                src={`/mj-images/${enemy.image}`}
                                 alt='Player two avatar'
                                 width={256}
                                 height={256}
