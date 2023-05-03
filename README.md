@@ -14,7 +14,7 @@ The RPG Battler is a custom battle simulator that allows two characters to engag
 
  - Each attack has a hit chance, which is determined by the attacker's dexterity and intelligence, and the defender's dexterity.
 
- - The defender can choose to block or dodge the attack, reducing or avoiding the damage, respectively.
+ - The defender can block or dodge the attack, reducing or avoiding the damage, respectively.
 
  - A successful attack can result in a critical hit, which deals extra damage and has a chance of causing a wound.
 
